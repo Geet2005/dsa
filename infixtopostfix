@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+
+#define SIZE 100
+
+char stack[SIZE];
+int top = -1;
+
+void push(char c) {
+    stack[++top] = c;
+}
+char pop() {
+    return stack[top--];
+}
+int isp(char c) {
+    switch (c) {
+        case '+': case '-': return 2;
+        case '*': case '/': return 4;
+        case '^': return 5;
+        case '(': return 0;
+        default: return -1;
+    }
+}
+int icp(char c) {
+    switch (c) {
+        case '+': case '-': return 1;
+        case '*': case '/': return 3;
+        case '^': return 6;
+        case '(': return 9;
+        case ')': return 0;
+        default: return -1;
+    }
+}
+int isOperand(char c) {
+    return (isalnum(c));
+}
+
+void infixToPostfix(char exp[], char postfix[]) {
+    int i = 0, j = 0;
+    char item, x;
+    push('(');
+    strcat(exp, ")");
+    while (top != -1) {
+        item = exp[i++];
+        x = pop();
+        if (isalnum(item)) {
+            postfix[j++] = item;
+            push(x);
+        }
+        else if (item == ')') {
+            while (x != '(') {
+                postfix[j++] = x;
+                x = pop();
+            }
+        }
+        else if (isp(x) >= icp(item)) {
+            while (isp(x) >= icp(item)) {
+                postfix[j++] = x;
+                x = pop();
+            }
+            push(x);
+            push(item);
+        }
+        else if (isp(x) < icp(item)) {
+            push(x);
+            push(item);
+        }
+    }
+    postfix[j] = '\0';
+}
+
+int evaluatePostfix(char postfix[]) {
+    int evalStack[SIZE], topEval = -1;
+    for (int i = 0; postfix[i] != '\0'; i++) {
+        char c = postfix[i];
+        if (isdigit(c)) {
+            evalStack[++topEval] = c - '0';
+        } else {
+            int b = evalStack[topEval--];
+            int a = evalStack[topEval--];
+            switch (c) {
+                case '+': evalStack[++topEval] = a + b; break;
+                case '-': evalStack[++topEval] = a - b; break;
+                case '*': evalStack[++topEval] = a * b; break;
+                case '/': evalStack[++topEval] = a / b; break;
+                case '^': evalStack[++topEval] = (int)pow(a, b); break;
+            }
+        }
+    }
+    return evalStack[topEval];
+}
+
+int main() {
+    char exp[SIZE], postfix[SIZE];
+    printf("Enter infix expression: ");
+    scanf("%s", exp);
+    infixToPostfix(exp, postfix);
+    printf("Postfix Expression: %s\n", postfix);
+    int flagNum = 1;
+    for (int i = 0; postfix[i] != '\0'; i++) {
+        if (isalpha(postfix[i])) {
+            flagNum = 0;
+            break;
+        }
+    }
+    if (flagNum)
+        printf("Evaluation Result: %d\n", evaluatePostfix(postfix));
+    return 0;
+}
