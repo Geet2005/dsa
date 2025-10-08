@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <math.h>
 
 int binarySearch(int arr[], int n, int key, int *steps) {
