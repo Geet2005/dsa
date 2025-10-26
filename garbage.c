@@ -1,38 +1,3 @@
-Attachment image.png added. Conversation opened. 1 read message.
-
-Skip to content
-Using St. Joseph's College of Engineering and Technology, Palai Mail with screen readers
-
-2 of 164
-Fwd:
-Inbox
-
-ASWATHY SANTHOSH <aswathysanthosh2028@ct.sjcetpalai.ac.in>
-Attachments
-1:27 PM (2 hours ago)
-to me
-
-
----------- Forwarded message ---------
-From: ASWATHY SANTHOSH <aswathysanthosh2028@ct.sjcetpalai.ac.in>
-Date: Wed, 8 Oct, 2025, 9:29 pm
-Subject: Fwd:
-To: MEENAKSHI T M <meenakshitm2028@ct.sjcetpalai.ac.in>
-
-
-
-
----------- Forwarded message ---------
-From: ASWATHY SANTHOSH <aswathysanthosh2028@ct.sjcetpalai.ac.in>
-Date: Wed, Oct 8, 2025 at 12:43 PM
-Subject:
-To: ASWATHY SANTHOSH <aswathysanthosh2028@ct.sjcetpalai.ac.in>
-
-
-
-
- One attachment
-  •  Scanned by Gmail
 #include <stdio.h>
 #include <stdlib.h>
 
